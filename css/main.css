@@ -684,6 +684,7 @@ p {
 
 .contact-form {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .contact-form > div:first-child {
@@ -797,6 +798,16 @@ p {
 
   .case-desc.pl-3 {
     padding: 0 !important;
+  }
+  .contact-form > div:first-child {
+    width: 100%;
+    padding: 2rem 3rem;
+  }
+
+  .contact-form > div:last-child {
+    width: 100%;
+    background: #fff;
+    padding: 2rem;
   }
 }
 
