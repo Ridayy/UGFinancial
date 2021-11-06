@@ -1012,6 +1012,10 @@ p {
   .contact-form > div:first-child {
     padding: 2rem 1.5rem;
   }
+
+  .contact-option {
+    font-size: 0.8rem;
+  }
 }
 
 @media screen and (max-width: 420px) {
