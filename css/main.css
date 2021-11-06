@@ -745,7 +745,7 @@ nav.case-nav {
 
 @media screen and (max-width: 1200px) {
   .showcase-content {
-    padding-top: 0px;
+    padding-top: 50px;
   }
 
   #showcase .container {
@@ -857,6 +857,10 @@ nav.case-nav {
 
   .showcase-content {
     width: 100%;
+  }
+
+  .showcase-content {
+    padding-top: 0px;
   }
 
   h1 {

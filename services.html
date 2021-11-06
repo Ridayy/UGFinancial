@@ -136,8 +136,8 @@
       <section id="about">
          <div class="container">
             <div class="row">
-               <div class="col-md-8" id="about-img"></div>
-               <div class="col-md-4" id="about-content">
+               <div class="col-lg-8 col-md-6 " id="about-img"></div>
+               <div class="col-lg-4  col-md-6" id="about-content">
                   <span class="header-small text-left">Why Choose Us?</span>
                   <div class="line ml-0"></div>
                   <h2>
@@ -373,18 +373,24 @@
       <script src="js/jquery.easypiechart.min.js"></script>
       <script>
          $(document).ready(function(){
-            $('.chart').easyPieChart({
-               easing: 'easeInOut',
-               barColor: '#119e5b',
-               trackColor: false,
-               scaleColor: false,
-               lineWidth: 4,
-               size: 152,
-               onStep: function(from, to, percent) {
-                   $(this.el).find('.percent').text(Math.round(percent));
-               }
-           });
-         
+            var servicesD = $("#services-d").offset().top;
+            $(window).scroll(function() {
+
+               if(window.pageYOffset > servicesD - $(window).height() + 400) {
+
+                  $('.chart').easyPieChart({
+                        easing: 'easeInOut',
+                        barColor: '#119e5b',
+                        trackColor: false,
+                        scaleColor: false,
+                        lineWidth: 4,
+                        size: 152,
+                        onStep: function(from, to, percent) {
+                           $(this.el).find('.percent').text(Math.round(percent));
+                        }
+                  });
+                }
+            }); 
          });
       </script>
    </body>
