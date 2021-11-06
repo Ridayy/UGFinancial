@@ -249,7 +249,7 @@ footer h3 {
 }
 
 #testimonials .card {
-  height: 340px;
+  min-height: 340px;
 }
 
 #services .card.dark,
