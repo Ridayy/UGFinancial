@@ -865,7 +865,13 @@ p {
     min-height: 180px !important;
   }
 
+  /* .categories {
+    flex-direction: column;
+  } */
+
   .categories .btn {
+    width: 45%;
+    margin: 10px 1%;
   }
 }
 
