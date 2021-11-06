@@ -891,6 +891,18 @@ p {
     width: 100%;
     padding: 1rem;
   }
+
+  h1 {
+    font-size: 2.1rem;
+  }
+
+  .lead {
+    color: var(--text-color);
+    font-family: "ModernEra-Medium";
+    font-size: 1.2rem;
+    color: #fff !important;
+    margin: 40px 0;
+  }
 }
 
 @media screen and (max-width: 420px) {
