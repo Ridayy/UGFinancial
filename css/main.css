@@ -665,7 +665,7 @@ nav.case-nav {
   height: 180px;
 }
 
-p {
+.post-content p {
   display: -webkit-box;
   -webkit-line-clamp: 7;
   -webkit-box-orient: vertical;
@@ -1027,6 +1027,14 @@ p {
   input,
   textarea {
     font-size: 0.9rem;
+  }
+
+  .benefits {
+    flex-direction: column;
+  }
+
+  .benefits > div {
+    margin-top: 30px;
   }
 }
 
