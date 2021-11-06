@@ -673,6 +673,10 @@ p {
   text-overflow: ellipsis;
 }
 
+.featured-post-img {
+  width: 50%;
+}
+
 .featured-post-img img {
   height: 400px !important;
   display: block;
@@ -873,6 +877,20 @@ p {
     width: 45%;
     margin: 10px 1%;
     height: fit-content;
+  }
+
+  .blog-posts .d-flex {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+
+  .blog-posts .d-flex > div {
+    width: 100% !important;
+  }
+
+  .featured-post-img img {
+    height: 250px !important;
+    display: block;
   }
 }
 
