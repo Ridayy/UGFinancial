@@ -19,6 +19,7 @@
      <link rel="stylesheet" href="css/owl.theme.default.css">
      <link rel="stylesheet" href="css/main.css" />
     <title>UG Financial - Home</title>
+      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -81,7 +82,7 @@
       </div>
     </section>
 
-    <section id="whatwedo" class="mt-5">
+    <section id="whatwedo" class="mt-5"  data-aos="fade-left">
       <div class="container">
         <span class="header-small">Who do we serve</span>
         <div class="line"></div>
@@ -149,7 +150,7 @@
       </div>
     </section>
 
-    <section id="about">
+    <section id="about" data-aos="fade-right">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-6" id="about-img"></div>
@@ -170,7 +171,7 @@
       </div>
     </section>
 
-    <section id="stats">
+    <section id="stats" data-aos="fade-left">
       <div class="container">
         <span class="header-small">Statistics</span>
             <div class="line"></div>
@@ -253,7 +254,7 @@
       </div>
     </section>
 
-    <section id="services">
+    <section id="services" data-aos="fade-up">
       <div class="container">
         <span class="header-small text-left">Services</span>
         <div class="line ml-0"></div>
@@ -313,7 +314,7 @@
       </div>
     </section>
  
-    <section id="contact">
+    <section id="contact" data-aos="fade-right">
       <div class="container">
         <div class="row">
           <div class="col-lg-4 col-md-6" id="contact-content">
@@ -334,7 +335,7 @@
       </div>
     </section>
 
-  <section id="testimonials">
+  <section id="testimonials" data-aos="fade-up">
       <div class="container">
         <span class="header-small text-left">Testimonials</span>
         <div class="line ml-0"></div>
@@ -420,7 +421,7 @@
       </div>
     </section>
 
-    <section id="newsletter">
+    <section id="newsletter" data-aos="fade-left">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-6" id="newsletter-img"></div>
@@ -515,6 +516,13 @@
     <script src="js/countUp.js"></script>
     <script src="js/countUp-jquery.js"></script>
     <script src="js/owl.carousel.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      offset: 200,
+      duration: 1000
+    });
+  </script>
 
     <script>
       $(document).ready(function(){

@@ -18,6 +18,7 @@
       <link rel="stylesheet" href="css/owl.theme.default.css">
       <link rel="stylesheet" href="css/main.css" />
       <title>UG Financial - Services</title>
+      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
    </head>
    <body>
       <nav class="navbar navbar-expand-lg navbar-light">
@@ -76,7 +77,7 @@
          </div>
          </div>
       </section>
-      <section id="services-b">
+      <section id="services-b" data-aos="fade-right">
          <div class="container">
             <span class="header-small">How it works</span>
             <div class="line"></div>
@@ -133,7 +134,7 @@
             </div>
          </div>
       </section>
-      <section id="about">
+      <section id="about" data-aos="fade-left">
          <div class="container">
             <div class="row">
                <div class="col-lg-8 col-md-6 " id="about-img"></div>
@@ -153,7 +154,7 @@
             </div>
          </div>
       </section>
-      <section id="services-c">
+      <section id="services-c" data-aos="fade-up">
          <div class="container">
             <span class="header-small">Services</span>
             <div class="line"></div>
@@ -371,6 +372,13 @@
       crossorigin="anonymous"
     ></script>
       <script src="js/jquery.easypiechart.min.js"></script>
+       <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+      <script>
+         AOS.init({
+            offset: 200,
+            duration: 1000
+         });
+      </script>
       <script>
          $(document).ready(function(){
             var servicesD = $("#services-d").offset().top;

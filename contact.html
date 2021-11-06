@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="css/owl.theme.default.css" />
     <link rel="stylesheet" href="css/main.css" />
     <title>UG Financial - Case</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -80,7 +81,7 @@
       </div>
     </section>
 
-    <section id="contact-a">
+    <section id="contact-a" data-aos="fade-left">
       <div class="container">
          <span class="header-small">Contact Us</span>
          <div class="line"></div>
@@ -194,5 +195,12 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        offset: 200,
+        duration: 1000
+      });
+    </script>
   </body>
 </html>

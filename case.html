@@ -18,7 +18,9 @@
     <link rel="stylesheet" href="css/owl.carousel.css" />
     <link rel="stylesheet" href="css/owl.theme.default.css" />
     <link rel="stylesheet" href="css/main.css" />
+
     <title>UG Financial - Case</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light case-nav">
@@ -60,7 +62,7 @@
       </div>
     </nav>
 
-    <section id="case-study-a">
+    <section id="case-study-a" data-aos="fade-left">
       <div class="container">
         <button class="btn secondary-btn">Back To Case Studies</button>
         <div class="row">
@@ -108,7 +110,7 @@
       </div>
     </section>
 
-    <section id="case-study-b">
+    <section id="case-study-b" data-aos="fade-right">
       <div class="container">
         <span class="header-small">What they say about us</span>
         <div class="line"></div>
@@ -136,7 +138,7 @@
       <br /><br />
     </section>
 
-    <section id="case-study-c">
+    <section id="case-study-c" data-aos="fade-left">
       <div class="container">
         <span class="header-small">Insights</span>
         <div class="line"></div>
@@ -257,6 +259,14 @@
 
     <script src="js/countUp.js"></script>
     <script src="js/countUp-jquery.js"></script>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        offset: 200,
+        duration: 1000,
+      });
+    </script>
 
     <script>
       $(document).ready(function () {
