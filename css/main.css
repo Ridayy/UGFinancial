@@ -968,9 +968,12 @@ p {
   #case-study-b h2,
   #case-study-c h2,
   #blog-a h2,
-  #contact-a h2,
-  .contact-card .contact-form h3 {
+  #contact-a h2 {
     margin-bottom: 50px !important;
+    font-size: 1.5rem !important;
+  }
+
+  .contact-card .contact-form h3 {
     font-size: 1.5rem !important;
   }
 
@@ -1023,5 +1026,9 @@ p {
 
   .case-details .secondary-btn {
     width: 100% !important;
+  }
+
+  .contact-form > div:first-child {
+    padding: 2rem 1rem;
   }
 }
