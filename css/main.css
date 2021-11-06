@@ -113,6 +113,18 @@ h1 {
   background-attachment: fixed !important;
 }
 
+#showcase .container {
+  height: 100%;
+}
+
+#showcase .showcase-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  align-items: flex-start;
+}
+
 #showcase::after {
   content: "";
   position: absolute;
@@ -746,17 +758,6 @@ nav.case-nav {
 @media screen and (max-width: 1200px) {
   .showcase-content {
     padding-top: 50px;
-  }
-
-  #showcase .container {
-    height: 100%;
-  }
-
-  #showcase .showcase-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
   }
 
   #showcase .btn {
