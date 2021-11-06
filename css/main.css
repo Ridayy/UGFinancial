@@ -976,6 +976,9 @@ p {
   .contact-card .contact-form h3 {
     font-size: 1.5rem !important;
   }
+  .contact-form .line {
+    margin-bottom: 2rem;
+  }
 
   #stats .card {
     min-height: 190px !important;
@@ -1010,11 +1013,15 @@ p {
   }
 
   .contact-form > div:first-child {
-    padding: 2rem 1.5rem;
+    padding: 2rem 1.5rem 0 1.5rem;
   }
 
   .contact-option {
     font-size: 0.8rem;
+  }
+
+  .contact-form .social {
+    display: none;
   }
 }
 
