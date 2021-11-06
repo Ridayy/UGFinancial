@@ -86,7 +86,7 @@ h1 {
 }
 
 #showcase {
-  height: 82.5vh;
+  min-height: 82.5vh;
   clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
   position: relative;
   background: url("../img/header.jpg") center center/cover no-repeat;
@@ -242,6 +242,10 @@ footer h3 {
   padding: 1rem 0;
   border-radius: 0;
   min-height: 320px;
+}
+
+#case-study-b .card {
+  min-height: fit-content !important;
 }
 
 #services-b .card,
@@ -927,6 +931,10 @@ nav.case-nav {
   .blog-posts .d-flex .pl-3 {
     padding: 0 !important;
   }
+
+  #case-study-b .card {
+    width: 100% !important;
+  }
 }
 
 @media screen and (max-width: 590px) {
@@ -939,12 +947,9 @@ nav.case-nav {
   }
 
   #about-content,
-  #newsletter-content {
-    padding: 2rem !important;
-  }
-
+  #newsletter-content,
   #contact-content {
-    padding: 1rem 2rem !important;
+    padding: 2rem !important;
   }
 
   #whatwedo .card {
@@ -969,7 +974,7 @@ nav.case-nav {
   #case-study-c h2,
   #blog-a h2,
   #contact-a h2 {
-    margin-bottom: 50px !important;
+    margin-bottom: 20px !important;
     font-size: 1.5rem !important;
   }
 
@@ -1035,6 +1040,17 @@ nav.case-nav {
 
   .benefits > div {
     margin-top: 30px;
+  }
+
+  #about-content,
+  #contact-content,
+  #newsletter-content {
+    min-height: fit-content !important;
+    margin-bottom: 10px;
+  }
+
+  #testimonials {
+    margin-top: 100px !important;
   }
 }
 
