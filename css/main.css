@@ -820,6 +820,26 @@ p {
     background: rgba(0, 0, 0, 0.65);
   }
 
+  #showcase {
+    background: url("../img/header.jpg") right center/cover no-repeat;
+  }
+
+  #showcase.services-showcase {
+    background: url("../img/services-showcase.jpg") right center/cover no-repeat !important;
+  }
+
+  #showcase.case-studies-showcase {
+    background: url("../img/showcase.jpg") right center/cover no-repeat !important;
+  }
+
+  #showcase.blog-showcase {
+    background: url("../img/blog-showcase.jpg") right center/cover no-repeat !important;
+  }
+
+  #showcase.contact-showcase {
+    background: url("../img/contact-showcase.jpg") right center/cover no-repeat !important;
+  }
+
   .showcase-content {
     width: 100%;
   }
@@ -891,6 +911,10 @@ p {
   .featured-post-img img {
     height: 250px !important;
     display: block;
+  }
+
+  .blog-posts .d-flex .pl-3 {
+    padding: 0 !important;
   }
 }
 
