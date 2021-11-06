@@ -37,6 +37,7 @@ body {
   color: var(--text-color);
   font-family: "ModernEra-Regular";
   /* background: #f6f2ea; */
+  overflow-x: hidden;
 }
 
 .navbar {
@@ -769,7 +770,7 @@ p {
   }
 
   #showcase::after {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.65);
   }
 
   .showcase-content {
