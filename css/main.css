@@ -1023,6 +1023,11 @@ p {
   .contact-form .social {
     display: none;
   }
+
+  input,
+  textarea {
+    font-size: 0.9rem;
+  }
 }
 
 @media screen and (max-width: 420px) {
