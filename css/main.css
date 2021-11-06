@@ -829,7 +829,7 @@ nav.case-nav {
   #testimonials,
   #services-d,
   #case-study-b {
-    clip-path: polygon(0 0, 100% 0, 100% 95%, 50% 100%, 0 95%);
+    clip-path: polygon(0 0, 100% 0, 100% 95%, 50% 100%, 0 95%) !important;
   }
 
   #showcase::after {
