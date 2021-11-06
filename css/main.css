@@ -968,9 +968,10 @@ p {
   #case-study-b h2,
   #case-study-c h2,
   #blog-a h2,
-  #contact-a h2 {
+  #contact-a h2,
+  .contact-card .contact-form h3 {
     margin-bottom: 50px !important;
-    font-size: 1.5rem;
+    font-size: 1.5rem !important;
   }
 
   #stats .card {
@@ -1003,6 +1004,10 @@ p {
     font-size: 1.2rem;
     color: #fff !important;
     margin: 40px 0;
+  }
+
+  .contact-form > div:first-child {
+    padding: 2rem 1.5rem;
   }
 }
 
