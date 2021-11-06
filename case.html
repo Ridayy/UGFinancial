@@ -80,17 +80,23 @@
             </p>
             <div class="benefits">
               <div>
-                <span class="benefit-num">1000+</span>
+                <span class="benefit-num"
+                  ><span class="counter"> 1000 </span>+</span
+                >
                 <span class="benefit-desc">Retails Increased</span>
               </div>
 
               <div>
-                <span class="benefit-num">$150</span>
+                <span class="benefit-num"
+                  >$<span class="counter">150</span></span
+                >
                 <span class="benefit-desc">Millions Raised</span>
               </div>
 
               <div>
-                <span class="benefit-num">98%</span>
+                <span class="benefit-num"
+                  ><span class="counter">150</span>%</span
+                >
                 <span class="benefit-desc">Increase In Organic</span>
               </div>
             </div>
@@ -248,5 +254,41 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
+
+    <script src="js/countUp.js"></script>
+    <script src="js/countUp-jquery.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        var stats = $("#case-study-a").offset().top;
+        var countUpFinished = false;
+
+        if ($(window).width() > 1200) {
+          $(".counter").each(function () {
+            var element = $(this);
+            var endVal = parseInt(element.text());
+            console.log("here");
+            element.countup(endVal);
+          });
+          countUpFinished = true;
+        } else {
+          $(window).scroll(function () {
+            if (
+              !countUpFinished &&
+              window.pageYOffset > stats - $(window).height()
+            ) {
+              $(".counter").each(function () {
+                var element = $(this);
+                var endVal = parseInt(element.text());
+                console.log("here");
+                element.countup(endVal);
+              });
+
+              countUpFinished = true;
+            }
+          });
+        }
+      });
+    </script>
   </body>
 </html>

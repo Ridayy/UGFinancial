@@ -186,7 +186,9 @@
                    <img src="img/stat1.png" alt="">
                  </div>
                  <div class="stat-count">
-                   <span class="num">10</span>
+                   <span class="num">
+                     <span class="counter">10</span>
+                   </span>
                    Years of experience
                  </div>
                </div>
@@ -201,7 +203,9 @@
                    <img src="img/stat2.png" alt="">
                  </div>
                  <div class="stat-count">
-                   <span class="num">10K</span>
+                   <span class="num">
+                     <span class="counter">10</span>K
+                   </span>
                    Happy Clients
                  </div>
                </div>
@@ -217,7 +221,9 @@
                    <img src="img/stat3.png" alt="">
                  </div>
                  <div class="stat-count">
-                   <span class="num">120</span>
+                   <span class="num">
+                     <span class="counter">120</span>
+                   </span>
                    Awards won
                  </div>
                </div>
@@ -233,7 +239,9 @@
                    <img src="img/stat4.png" alt="">
                  </div>
                  <div class="stat-count">
-                   <span class="num">10</span>
+                   <span class="num">
+                     <span class="counter">20</span>
+                   </span>
                    Global Branches
                  </div>
                </div>
@@ -504,6 +512,8 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
+    <script src="js/countUp.js"></script>
+    <script src="js/countUp-jquery.js"></script>
     <script src="js/owl.carousel.js"></script>
 
     <script>
@@ -524,6 +534,25 @@
                 }
             }
         });
+
+         var stats = $("#stats").offset().top;
+            var countUpFinished = false;
+            $(window).scroll(function() {
+
+                if(!countUpFinished && window.pageYOffset > stats - $(window).height() + 200) {
+                    $(".counter").each(function() {
+                        var element = $(this);
+                        var endVal = parseInt(element.text());
+                        console.log("here")
+                        element.countup(endVal);
+                    })
+
+                    countUpFinished = true;
+
+                }
+
+
+            });
       });
     </script>
   </body>
