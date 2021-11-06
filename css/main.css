@@ -155,6 +155,20 @@ h1 {
   text-align: center;
 }
 
+.case-details {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.case-details .case-logo {
+  width: 25%;
+}
+
+.case-details .case-desc {
+  width: 75%;
+}
+
 .header-small {
   font-size: 1.1rem;
   text-align: center;
@@ -488,6 +502,7 @@ footer a {
   display: flex;
   justify-content: center;
   margin-top: 30px;
+  flex-wrap: wrap;
 }
 
 .categories .btn {
@@ -756,6 +771,29 @@ p {
     width: 50%;
     padding: 1rem;
   }
+
+  .case-details {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .case-details .case-logo {
+    width: 100%;
+  }
+
+  .case-details .case-desc {
+    width: 100%;
+  }
+
+  .case-logo img {
+    margin: 0;
+  }
+
+  .case-desc.pl-3 {
+    padding: 0 !important;
+  }
 }
 
 @media screen and (max-width: 780px) {
@@ -825,6 +863,9 @@ p {
 
   #stats .card {
     min-height: 180px !important;
+  }
+
+  .categories .btn {
   }
 }
 
