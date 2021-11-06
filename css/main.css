@@ -872,6 +872,7 @@ p {
   .categories .btn {
     width: 45%;
     margin: 10px 1%;
+    height: fit-content;
   }
 }
 
