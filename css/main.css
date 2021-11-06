@@ -962,4 +962,8 @@ p {
   .categories .btn {
     width: 100%;
   }
+
+  .case-details .secondary-btn {
+    width: 100% !important;
+  }
 }
