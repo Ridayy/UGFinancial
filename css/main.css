@@ -33,6 +33,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: var(--text-color);
   font-family: "ModernEra-Regular";
@@ -55,7 +59,7 @@ body {
   font-family: "ModernEra-Medium";
   font-size: 18px;
   margin-right: 20px;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in;
   border-bottom: 2px solid #fff;
 }
 
@@ -73,16 +77,32 @@ h1 {
 
 .primary-btn {
   background: var(--primary-light);
-  color: #fff;
+  color: #fff !important;
   box-shadow: 2px 2px 8px var(--text-color);
   border-radius: 0;
+  border: 2px solid var(--primary-light);
+}
+
+.primary-btn:hover {
+  background: #fff !important;
+  color: var(--primary-light) !important;
+  transition: all 0.5s ease-in-out;
+  font-weight: bold;
+}
+
+.secondary-btn:hover {
+  background: #fff !important;
+  color: var(--secondary-color) !important;
+  transition: all 0.5s ease-in-out;
+  font-weight: bold;
 }
 
 .secondary-btn {
   background: var(--secondary-color);
-  color: #fff;
+  color: #fff !important;
   box-shadow: 2px 2px 8px var(--text-color);
   border-radius: 0;
+  border: 2px solid var(--secondary-color);
 }
 
 #showcase {
@@ -211,11 +231,32 @@ h1 {
 #case-study-b h2,
 #case-study-c h2,
 #blog-a h2,
+#post-a h2,
 #contact-a h2 {
   font-family: "ModernEra-ExtraBold";
   font-size: 2rem;
   color: var(--primary-color) !important;
   font-weight: bold;
+}
+
+#post-a h2 {
+  font-size: 1.8rem;
+  font-family: "ModernEra-Bold";
+  margin: 10px 0;
+}
+
+.post-publisher {
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.post-publisher img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 10px;
 }
 
 #whatwedo h3,
@@ -254,6 +295,12 @@ footer h3 {
   padding: 1rem 0;
   border-radius: 0;
   min-height: 320px;
+  transition: all 0.3s ease-in;
+  cursor: pointer !important;
+}
+
+.card:hover {
+  transform: scale(1.1);
 }
 
 #case-study-b .card {
@@ -463,6 +510,12 @@ footer a {
   background: var(--primary-light);
   color: #fff;
   margin-right: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+}
+
+.social i:hover {
+  background: var(--secondary-color);
 }
 
 .work-num {
@@ -527,6 +580,13 @@ footer a {
 
 .categories .btn.sel {
   background: #0d3451;
+  border-color: #0d3451;
+}
+
+.categories .btn.sel:hover {
+  background: #0d3451 !important;
+  border-color: #0d3451 !important;
+  color: #fff !important;
 }
 
 .cases .card {
@@ -587,7 +647,8 @@ nav.case-nav {
   border-bottom: 1px solid #dedede !important;
 }
 
-#case-study-a {
+#case-study-a,
+#post-a {
   padding-top: 50px;
 }
 
@@ -598,7 +659,8 @@ nav.case-nav {
   display: block;
 }
 
-#case-study-a p {
+#case-study-a p,
+#post-a p {
   font-size: 1.1rem;
   margin: 20px 0;
 }
@@ -698,6 +760,11 @@ nav.case-nav {
   display: block;
 }
 
+#contact-a .card:hover {
+  transform: scale(1) !important;
+  cursor: none;
+}
+
 .contact-form {
   display: flex;
   flex-wrap: wrap;
@@ -753,6 +820,14 @@ nav.case-nav {
   color: var(--secondary-color);
   margin-right: 20px;
   display: inline-block;
+}
+
+#post-img {
+  width: 100%;
+  max-height: 400px;
+  min-height: 300px;
+  object-fit: cover;
+  margin-top: 30px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -978,6 +1053,7 @@ nav.case-nav {
   #case-study-b h2,
   #case-study-c h2,
   #blog-a h2,
+  #post-a h2,
   #contact-a h2 {
     margin-bottom: 20px !important;
     font-size: 1.5rem !important;
