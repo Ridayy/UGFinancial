@@ -44,6 +44,22 @@ body {
   overflow-x: hidden;
 }
 
+.loader {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.loader .inner {
+  width: 100%;
+  height: 100%;
+  background: url("../img/loader.gif") no-repeat center center;
+}
+
 .navbar {
   padding: 1rem 0;
 }
@@ -406,7 +422,8 @@ footer {
 
 #about-img,
 #contact-img,
-#newsletter-img {
+#newsletter-img,
+#team-img {
   position: relative;
   background: url("../img/about.jpg") center center/cover no-repeat;
   height: 400px;
@@ -865,6 +882,7 @@ nav.case-nav {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .founder-img {
@@ -1031,7 +1049,8 @@ nav.case-nav {
 
   #about-img::after,
   #contact-img::after,
-  #newsletter-img::after {
+  #newsletter-img::after,
+  #team-img::after {
     background: rgba(48, 32, 32, 0.62);
   }
 
@@ -1214,6 +1233,27 @@ nav.case-nav {
 
   #testimonials {
     margin-top: 100px !important;
+  }
+
+  .founder-img {
+    width: 100%;
+  }
+
+  .founder-img img {
+    width: 60%;
+    margin: auto;
+  }
+
+  .founder-detail {
+    width: 100%;
+  }
+
+  .founder-detail h3 {
+    text-align: center;
+  }
+
+  .founder-detail span {
+    text-align: center;
   }
 }
 
