@@ -50,15 +50,15 @@ body {
 
 .navbar-brand img,
 .logo img {
-  width: 200px;
+  width: 180px;
   object-fit: cover;
 }
 
 .nav-item .nav-link {
   color: var(--primary-color) !important;
   font-family: "ModernEra-Medium";
-  font-size: 18px;
-  margin-right: 20px;
+  font-size: 17px;
+  margin-right: 18px;
   transition: all 0.5s ease-in;
   border-bottom: 2px solid #fff;
 }
@@ -115,6 +115,11 @@ h1 {
 
 #showcase.about-showcase {
   background: url("../img/about-showcase.jpg") top center/cover no-repeat !important;
+  background-attachment: fixed !important;
+}
+
+#showcase.team-showcase {
+  background: url("../img/team-showcase.jpg") right center/cover no-repeat !important;
   background-attachment: fixed !important;
 }
 
@@ -993,6 +998,14 @@ nav.case-nav {
 
   #showcase.contact-showcase {
     background: url("../img/contact-showcase.jpg") right center/cover no-repeat !important;
+  }
+
+  #showcase.about-showcase {
+    background: url("../img/about-showcase.jpg") right center/cover no-repeat !important;
+  }
+
+  #showcase.team-showcase {
+    background: url("../img/team-showcase.jpg") right center/cover no-repeat !important;
   }
 
   .showcase-content {
