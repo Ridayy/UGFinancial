@@ -22,7 +22,7 @@
 
 :root {
   --primary-color: #0d3451;
-  --primary-light: #3fa9f4;
+  --primary-light: #007bff;
   --secondary-color: #119e5b;
   --text-color: #7e868b;
 }
@@ -89,6 +89,10 @@ h1 {
   font-size: 2.5rem;
   color: var(--primary-color) !important;
   font-weight: bold;
+}
+
+.showcase-content h1 p {
+  margin-bottom: 0 !important;
 }
 
 .primary-btn {
@@ -368,20 +372,25 @@ footer h3 {
 }
 
 #testimonials .card {
-  min-height: 340px;
+  min-height: 370px;
 }
 
 #services .card.dark,
 #services-c .card.dark {
-  background: var(--primary-color);
   border: none;
   outline: none;
+}
+
+.home-d-cards .owl-item:nth-of-type(even) .card {
+  background: var(--primary-color) !important;
 }
 
 #services .card.dark h3,
 #services .card.dark p,
 #services-c .card.dark h3,
-#services-c .card.dark p {
+#services-c .card.dark p,
+#services .home-d-cards .owl-item:nth-of-type(even) .card .card-body h3,
+.home-d-cards .owl-item:nth-of-type(even) .card p {
   color: #fff !important;
 }
 
@@ -440,6 +449,10 @@ footer {
   background: url("../img/contact.jpg") center center/cover no-repeat;
 }
 
+#newsletter-img {
+  background: url("../img/newsletter.jpg") center center/cover no-repeat;
+}
+
 #about-img::after,
 #contact-img::after,
 #team-img::after,
@@ -457,8 +470,10 @@ footer {
   background: linear-gradient(to left, rgba(255, 255, 255, 0.001), #fff 95%);
 }
 
-.primary-text {
-  color: #3fa9f4;
+.primary-text,
+em {
+  color: var(--primary-light);
+  font-style: normal;
 }
 
 #about-content,
@@ -483,6 +498,10 @@ footer {
 
 .stat .stat-icon {
   margin-right: 20px;
+}
+
+.stat-icon img {
+  max-width: 64px;
 }
 
 .stat-count {
