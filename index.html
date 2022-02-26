@@ -42,13 +42,13 @@
       const init = async () => {
          const prismicDoc = await client.getSingle("home");
          setShowcase(prismicDoc);
-         setHomeA(prismicDoc);
-         setHomeB(prismicDoc);
-         setHomeC(prismicDoc);
-         setHomeD(prismicDoc);
-         setHomeE(prismicDoc);
-         setHomeF(prismicDoc);
-         setHomeG(prismicDoc);
+         setHomeA(prismicDoc); // Who we do serve
+         setHomeB(prismicDoc); // About Us
+         setHomeC(prismicDoc); // Statistics
+         setHomeD(prismicDoc); // Services
+         setHomeE(prismicDoc); // Contact
+         setHomeF(prismicDoc); // Testimonials
+         setHomeG(prismicDoc); // Newsletter
          setFooter(prismicDoc);
       };
 
@@ -359,14 +359,14 @@
 
          footerDHeading.textContent = footer_d_heading[0].text;
          descriptionD.textContent = footer_d_description[0].text.trim();
-         
-         const em = email[0].spans[0].data.url;
+
+         const em = email[0].text;
 
          footerDLink.innerHTML = `<a href="mailto:${em}">${em}</a>`;
 
-         socialLinks[0].setAttribute('href', `${facebook_link[0].spans[0].data.url}`);
-         socialLinks[1].setAttribute('href', `${twitter_link[0].spans[0].data.url}`);
-         socialLinks[2].setAttribute('href', `${instagram_link[0].spans[0].data.url}`)
+         socialLinks.children[0].setAttribute('href', `${facebook_link[0].spans[0].data.url}`);
+         socialLinks.children[1].setAttribute('href', `${twitter_link[0].spans[0].data.url}`);
+         socialLinks.children[2].setAttribute('href', `${instagram_link[0].spans[0].data.url}`);
 
       }
 
