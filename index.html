@@ -41,7 +41,7 @@
       const client = prismic.createClient(endpoint);
       const init = async () => {
          const prismicDoc = await client.getSingle("home");
-         setShowcase(prismicDoc);
+         setLogoAndShowcase(prismicDoc);
          setHomeA(prismicDoc); // Who we do serve
          setHomeB(prismicDoc); // About Us
          setHomeC(prismicDoc); // Statistics
@@ -52,9 +52,13 @@
          setFooter(prismicDoc);
       };
 
-      function setShowcase(prismicDoc) {
-         const { showcase_title, showcase_content, showcase_btn_link, showcase_btn_text, showcase_image } = prismicDoc.data;
+      function setLogoAndShowcase(prismicDoc) {
+         const { logo, showcase_title, showcase_content, showcase_btn_link, showcase_btn_text, showcase_image } = prismicDoc.data;
          const titleHTML = prismicH.asHTML(showcase_title);
+
+         const navbarBrand = document.querySelector(".navbar-brand");
+         const navbarLogo = navbarBrand.children[0];
+         navbarLogo.setAttribute('src', `${logo.url}`);
 
          const showcase = document.querySelector('#showcase');
          const showcaseContent = document.querySelector(".showcase-content");
@@ -65,7 +69,7 @@
          mainHeading.innerHTML = titleHTML;
          leadParagraph.textContent = showcase_content[0].text.trim();
          linkText.textContent = showcase_btn_text[0].text;
-         linkText.setAttribute('href', showcase_btn_link[0].text);
+         linkText.setAttribute('href', showcase_btn_link[0].spans[0].data.url);
 
          //  Set Background Image
 
@@ -126,7 +130,7 @@
          heading.innerHTML = prismicH.asHTML(homeb_heading);
          description.textContent = homeb_description[0].text.trim();
          link.textContent = homeb_btn_text[0].text;
-         link.setAttribute('href', `${homeb_btn_link[0].text}`);
+         link.setAttribute('href', `${homeb_btn_link[0].spans[0].data.url}`);
 
       }
 
@@ -402,8 +406,8 @@
       </div>
       <nav class="navbar navbar-expand-xl navbar-light">
          <div class="container">
-            <a class="navbar-brand" href="#">
-            <img src="img/logo.png" alt="" />
+            <a class="navbar-brand" href="index.html">
+            <img src="img/logo.png" alt="logo" />
             </a>
             <button
                class="navbar-toggler"
