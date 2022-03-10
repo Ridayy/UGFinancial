@@ -1003,7 +1003,6 @@ div p.case-content {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    flex-direction: column;
   }
 
   .case-details .case-logo {
