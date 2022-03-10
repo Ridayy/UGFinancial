@@ -16,10 +16,185 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="css/owl.carousel.css">
-     <link rel="stylesheet" href="css/owl.theme.default.css">
-     <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/owl.theme.default.css">
+    <link rel="stylesheet" href="css/main.css" />
     <title>UG Financial - Team</title>
-      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script type="module">
+      import * as prismic from "https://cdn.skypack.dev/@prismicio/client";
+      import * as prismicH from "https://cdn.skypack.dev/@prismicio/helpers";
+      const repoName = "ugfinancial";
+      const endpoint = prismic.getEndpoint(repoName);
+      const client = prismic.createClient(endpoint);
+      const init = async () => {
+          const homeDoc = await client.getSingle("home");
+          const prismicDoc = await client.getSingle("team");
+          setLogo(homeDoc);
+          setShowcase(prismicDoc);
+          setTeamA(prismicDoc);
+          setTeamB(prismicDoc);
+          setFooter(homeDoc);
+      };
+
+      function setShowcase(prismicDoc){
+          const { showcase_title, showcase_content, showcase_btn_link, showcase_btn_text, showcase_image} = prismicDoc.data;
+          const titleHTML = prismicH.asHTML(showcase_title);
+
+          const showcase = document.querySelector('#showcase');
+          const showcaseContent = document.querySelector(".showcase-content");
+          const mainHeading =  showcaseContent.children[0];
+          const leadParagraph = showcaseContent.children[1];
+          const linkText = showcaseContent.children[2];
+
+          mainHeading.innerHTML = titleHTML;
+          leadParagraph.textContent = showcase_content[0].text.trim();
+          linkText.textContent = showcase_btn_text[0].text.trim();
+          linkText.setAttribute('href', showcase_btn_link[0].spans[0].data.url);
+          showcase.setAttribute('style', `background-image: url('${showcase_image.url}') !important`);
+
+          $( ".loader").fadeOut();
+        }
+      
+      function setLogo(prismicDoc){
+          const { logo } = prismicDoc.data;
+          const navbarBrand = document.querySelector(".navbar-brand");
+          const navbarLogo = navbarBrand.children[0];
+          navbarLogo.setAttribute('src', `${logo.url}`);
+      }
+      
+      function setFooter(prismicDoc){
+      
+          const footerA = document.querySelector(".footer-a");
+          const { logo , footer_a_description } = prismicDoc.data.body[7].primary;
+
+          const footerLogo = footerA.children[0];
+          const descriptionA = footerA.children[1];
+
+          footerLogo.innerHTML = ` <img src="${logo.url}" alt="${logo.alt}" />`;
+          descriptionA.textContent = footer_a_description[0].text.trim();
+
+          // PART B
+          const footerB = document.querySelector(".footer-b");
+          const { footer_b_heading } = prismicDoc.data.body[8].primary;
+
+          const footerBHeading = footerB.children[0];
+          const footerBLinksDiv = footerB.children[1];
+
+          footerBHeading.textContent = footer_b_heading[0].text.trim();
+
+          let footerBLinks = "";
+          let linkItems = prismicDoc.data.body[8].items;
+          linkItems.forEach(link => {
+          const {footer_b_link, footer_b_link_text} = link;
+          const l = footer_b_link[0].spans[0].data.url;
+          const t = footer_b_link_text[0].text;
+          footerBLinks += `<a href="${l}">${t}</a><br>`;
+          });
+          let div = document.createElement("div");
+          div.innerHTML = footerBLinks;
+          footerB.replaceChild(div, footerBLinksDiv);
+
+
+          // PART C
+          const footerC = document.querySelector(".footer-c");
+          const { footer_c_heading } = prismicDoc.data.body[9].primary;
+
+          const footerCHeading = footerC.children[0];
+          const footerCLinksDiv = footerC.children[1];
+
+          footerCHeading.textContent = footer_c_heading[0].text.trim();
+
+          let footerCLinks = "";
+          linkItems = prismicDoc.data.body[9].items;
+          linkItems.forEach(link => {
+          const {footer_c_link, footer_c_link_text} = link;
+          const l = footer_c_link[0].spans[0].data.url;
+          const t = footer_c_link_text[0].text;
+          footerCLinks += `<a href="${l}">${t}</a><br>`;
+          });
+          div = document.createElement("div");
+          div.innerHTML = footerCLinks;
+          footerC.replaceChild(div, footerCLinksDiv);
+
+          //  PART D
+          const footerD = document.querySelector(".footer-d");
+          const {footer_d_heading, footer_d_description, email, twitter_link, instagram_link, facebook_link } = prismicDoc.data.body[10].primary;
+
+          console.log(twitter_link);
+
+          const footerDHeading = footerD.children[0];
+          const descriptionD = footerD.children[1];
+          const footerDLink = footerD.children[2];
+          const socialLinks = footerD.children[3];
+
+          footerDHeading.textContent = footer_d_heading[0].text;
+          descriptionD.textContent = footer_d_description[0].text.trim();
+
+          const em = email[0].text;
+
+          footerDLink.innerHTML = `<a href="mailto:${em}">${em}</a>`;
+
+          socialLinks.children[0].setAttribute('href', `${facebook_link[0].spans[0].data.url}`);
+          socialLinks.children[1].setAttribute('href', `${twitter_link[0].spans[0].data.url}`);
+          socialLinks.children[2].setAttribute('href', `${instagram_link[0].spans[0].data.url}`);
+      }
+      
+      function setTeamA(prismicDoc){
+        const { team_a_headline, team_a_heading } = prismicDoc.data.body[0].primary;
+        const teamA = document.querySelector("#team-a .container");
+        const headerSmall = teamA.children[0];
+        const heading = teamA.children[2];
+
+        const headline = team_a_headline[0].text.trim();
+        headerSmall.textContent = headline;
+        heading.innerHTML = prismicH.asHTML(team_a_heading);
+
+          let cards = document.querySelectorAll(".founder-card .card-body");
+          let i = 0;
+          cards.forEach(card => {
+            
+            const { partner_name, partner_image, partner_additional_info, partner_details } = prismicDoc.data.body[0].items[i];
+
+            let html = `<div class="founder-desc">
+                          <div class="founder-img">
+                            <img src="${partner_image.url}" alt="">
+                          </div>
+                          <div class="founder-detail">
+                            <h3>${partner_name[0].text.trim()}</h3>
+                            <span class="founder-info">
+                              ${partner_additional_info[0].text.trim()}
+                            </span>
+                            <p>
+                             ${partner_details[0].text.trim()}
+                            </p>
+                          </div>
+                       </div>`;
+            card.innerHTML = html;
+            i++;
+          });
+      }
+      
+      function setTeamB(prismicDoc){
+         const { team_b_headline, team_b_heading, team_b_description, team_b_btn_link, team_b_btn_text, team_b_image } = prismicDoc.data.body[1].primary;
+         
+         const teamBImage = document.querySelector("#team-img");
+         const teamBContent = document.querySelector("#team-content");
+
+         teamBImage.setAttribute('style', `background-image: url('${team_b_image.url}') !important`);
+
+         const headerSmall = teamBContent.children[0];
+         const heading = teamBContent.children[2];
+         const description = teamBContent.children[3];
+         const link = teamBContent.children[4];
+
+         headerSmall.textContent = team_b_headline[0].text.trim();
+         heading.innerHTML = prismicH.asHTML(team_b_heading);
+         description.textContent = team_b_description[0].text.trim();
+         link.textContent = team_b_btn_text[0].text;
+         link.setAttribute('href', `${team_b_btn_link[0].spans[0].data.url}`);
+      }
+      init();
+    </script>
   </head>
   <body>
      <div class="loader">
@@ -100,9 +275,9 @@
             <h2>
               <span class="text-primary">Advising </span> at the intersection <br>  of life and wealth
             </h2>
-            <div class="row">
+            <div class="row founder-row">
                <div class="col-md-8 mx-auto">
-                  <div class="card">
+                  <div class="card founder-card">
                      <div class="card-body">
                        <div class="founder-desc">
                           <div class="founder-img">
@@ -121,9 +296,9 @@
                   </div>
                </div>
             </div>
-            <div class="row">
+            <div class="row founder-row">
                <div class="col-md-8 mx-auto">
-                  <div class="card">
+                  <div class="card founder-card">
                      <div class="card-body">
                        <div class="founder-desc">
                           <div class="founder-detail">
@@ -167,69 +342,66 @@
       </div>
     </section>
 
-   
-
-   <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-md-6">
-              <a href="#" class="logo">
-                <img src="img/logo.png" alt="" />
-              </a>
-              <p class="mt-3">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, architecto
-              </p>
-              <p>
-               <small>
-                  &copy; Copyright 2021. All rights reserved by UGFinancial
-               </small>
-              </p>
-          </div>
-          <div class="col-lg-3 col-md-6 links">
-            <h3 class="mt-4">About us</h3>
-            <a href="#about">About Us</a><br>
-            <a href="case-studies.html">Case studies</a><br>
-            <a href="services.html">Services</a><br>
-            <a href="blog.html">Blog</a><br>
-            <a href="contact.html">Contact</a><br>
-          </div>
-
-          <div class="col-lg-3 col-md-6 links">
-            <h3 class="mt-4">Services</h3>
-            <a href="#">Investment Planning</a><br>
-            <a href="#">Insurance Planning</a><br>
-            <a href="#">Risk Management</a><br>
-            <a href="#">Saving Plan</a><br>
-            <a href="#">Mutual Fund</a><br>
-          </div>
-
-           <div class="col-lg-3 col-md-6 links">
-            <h3 class="mt-4">Our address</h3>
-            <p class="mt-3">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, architecto
-            </p> 
-            
-            <p class="primary-text">
-               support@UGFinancial.com
-            </p>
-            <div class="social">
-              <a href="">
-                <i class="fab fa-facebook"></i>
-              </a>
-              <a href="">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="">
-                <i class="fab fa-instagram"></i>
-              </a>
+      <footer>
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-3 col-md-6 footer-a">
+                  <a href="#" class="logo">
+                  <img src="img/logo.png" alt="" />
+                  </a>
+                  <p class="mt-3">
+                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, architecto
+                  </p>
+                  <p>
+                     <small>
+                     &copy; Copyright 2021. All rights reserved by UGFinancial
+                     </small>
+                  </p>
+               </div>
+               <div class="col-lg-3 col-md-6 links footer-b">
+                  <h3 class="mt-4">About us</h3>
+                  <div>
+                     <a href="#about">About Us</a><br>
+                     <a href="case-studies.html">Case studies</a><br>
+                     <a href="services.html">Services</a><br>
+                     <a href="blog.html">Blog</a><br>
+                     <a href="contact.html">Contact</a><br>
+                  </div>
+               </div>
+               <div class="col-lg-3 col-md-6 links footer-c">
+                  <h3 class="mt-4">Services</h3>
+                  <div>
+                     <a href="#">Investment Planning</a><br>
+                     <a href="#">Insurance Planning</a><br>
+                     <a href="#">Risk Management</a><br>
+                     <a href="#">Saving Plan</a><br>
+                     <a href="#">Mutual Fund</a><br>
+                  </div>
+               </div>
+               <div class="col-lg-3 col-md-6 links footer-d">
+                  <h3 class="mt-4">Our address</h3>
+                  <p class="mt-3">
+                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, architecto
+                  </p>
+                  <p class="primary-text">
+                     <a href="mailto:support@UGFinancial.com">support@UGFinancial.com</a>
+                  </p>
+                  <div class="social">
+                     <a href="">
+                     <i class="fab fa-facebook"></i>
+                     </a>
+                     <a href="">
+                     <i class="fab fa-twitter"></i>
+                     </a>
+                     <a href="">
+                     <i class="fab fa-instagram"></i>
+                     </a>
+                  </div>
+               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </footer> 
-
-
-
+         </div>
+      </footer>
+     
 
      <script
          src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -254,14 +426,9 @@
       offset: 200,
       duration: 1000
     });
-
-    $(document).ready(function(){
-              $( ".loader").fadeOut(700);
-    });
-
   </script>
 
 
-    </script>
+   
   </body>
 </html>

@@ -20,9 +20,171 @@
     <link rel="stylesheet" href="css/main.css" />
     <title>UG Financial - Contact</title>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+     <script
+         src="https://code.jquery.com/jquery-3.5.1.min.js"
+         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+         crossorigin="anonymous"></script>
+
+            <script type="module">
+            import * as prismic from "https://cdn.skypack.dev/@prismicio/client";
+            import * as prismicH from "https://cdn.skypack.dev/@prismicio/helpers";
+            const repoName = "ugfinancial";
+            const endpoint = prismic.getEndpoint(repoName);
+            const client = prismic.createClient(endpoint);
+            const init = async () => {
+               const homeDoc = await client.getSingle("home");
+               const prismicDoc = await client.getSingle("contact");
+               setLogo(homeDoc);
+               setShowcase(prismicDoc);
+               setContactA(prismicDoc);
+               setFooter(homeDoc);
+            };
+
+            function setShowcase(prismicDoc){
+               const { showcase_title, showcase_content, showcase_btn_link, showcase_btn_text, showcase_image} = prismicDoc.data;
+               const titleHTML = prismicH.asHTML(showcase_title);
+
+               const showcase = document.querySelector('#showcase');
+               const showcaseContent = document.querySelector(".showcase-content");
+               const mainHeading =  showcaseContent.children[0];
+               const leadParagraph = showcaseContent.children[1];
+               const linkText = showcaseContent.children[2];
+
+               mainHeading.innerHTML = titleHTML;
+               leadParagraph.textContent = showcase_content[0].text.trim();
+               linkText.textContent = showcase_btn_text[0].text.trim();
+               linkText.setAttribute('href', showcase_btn_link[0].spans[0].data.url);
+               showcase.setAttribute('style', `background-image: url('${showcase_image.url}') !important`);
+
+               $( ".loader").fadeOut();
+            }
+
+            function setContactA(prismicDoc){
+              const { contact_a_headline, contact_a_heading, form_heading, form_paragraph, contact_number, email, facebook_link, twitter_link, instagram_link } = prismicDoc.data.body[0].primary;
+               const contactA = document.querySelector("#contact-a .container");
+               const headerSmall = contactA.children[0];
+               const heading = contactA.children[2];
+
+               const headline = contact_a_headline[0].text.trim();
+               headerSmall.textContent = headline;
+               heading.innerHTML = prismicH.asHTML(contact_a_heading);
+
+               const contactContent = document.querySelector(".contact-content");
+
+               const formHeading = contactContent.children[0];
+               const formParagraph = contactContent.children[2];
+
+               formHeading.textContent = form_heading[0].text.trim();
+               formParagraph.textContent = form_paragraph[0].text.trim();
+
+
+               const contactNumber = document.querySelector(".contact-num");
+               const contactEmail = document.querySelector(".contact-email");
+
+               contactNumber.innerHTML = `<i class="fas fa-phone"></i> ${contact_number[0].text}`;
+
+              contactEmail.innerHTML = ` <i class="fas fa-envelope"></i> ${email[0].text}`;
+              contactEmail.setAttribute('href', `mailto:${email[0].text}`);
+
+              const socialLinks = document.querySelector(".social-links");
+              const facebookLink = socialLinks.children[0];
+              const twitterLink = socialLinks.children[1];
+              const instagramLink = socialLinks.children[2];
+
+              facebookLink.setAttribute('href', facebook_link[0].spans[0].data.url);
+              twitterLink.setAttribute('href', twitter_link[0].spans[0].data.url);
+              instagramLink.setAttribute('href', instagram_link[0].spans[0].data.url);
+
+            }
+
+            function setLogo(prismicDoc){
+               const { logo } = prismicDoc.data;
+               const navbarBrand = document.querySelector(".navbar-brand");
+               const navbarLogo = navbarBrand.children[0];
+               navbarLogo.setAttribute('src', `${logo.url}`);
+            }
+
+            function setFooter(prismicDoc){
+            
+               const footerA = document.querySelector(".footer-a");
+               const { logo , footer_a_description } = prismicDoc.data.body[7].primary;
+
+               const footerLogo = footerA.children[0];
+               const descriptionA = footerA.children[1];
+
+               footerLogo.innerHTML = ` <img src="${logo.url}" alt="${logo.alt}" />`;
+               descriptionA.textContent = footer_a_description[0].text.trim();
+
+               // PART B
+               const footerB = document.querySelector(".footer-b");
+               const { footer_b_heading } = prismicDoc.data.body[8].primary;
+
+               const footerBHeading = footerB.children[0];
+               const footerBLinksDiv = footerB.children[1];
+
+               footerBHeading.textContent = footer_b_heading[0].text.trim();
+
+               let footerBLinks = "";
+               let linkItems = prismicDoc.data.body[8].items;
+               linkItems.forEach(link => {
+               const {footer_b_link, footer_b_link_text} = link;
+               const l = footer_b_link[0].spans[0].data.url;
+               const t = footer_b_link_text[0].text;
+               footerBLinks += `<a href="${l}">${t}</a><br>`;
+               });
+               let div = document.createElement("div");
+               div.innerHTML = footerBLinks;
+               footerB.replaceChild(div, footerBLinksDiv);
+
+
+               // PART C
+               const footerC = document.querySelector(".footer-c");
+               const { footer_c_heading } = prismicDoc.data.body[9].primary;
+
+               const footerCHeading = footerC.children[0];
+               const footerCLinksDiv = footerC.children[1];
+
+               footerCHeading.textContent = footer_c_heading[0].text.trim();
+
+               let footerCLinks = "";
+               linkItems = prismicDoc.data.body[9].items;
+               linkItems.forEach(link => {
+               const {footer_c_link, footer_c_link_text} = link;
+               const l = footer_c_link[0].spans[0].data.url;
+               const t = footer_c_link_text[0].text;
+               footerCLinks += `<a href="${l}">${t}</a><br>`;
+               });
+               div = document.createElement("div");
+               div.innerHTML = footerCLinks;
+               footerC.replaceChild(div, footerCLinksDiv);
+
+               //  PART D
+               const footerD = document.querySelector(".footer-d");
+               const {footer_d_heading, footer_d_description, email, twitter_link, instagram_link, facebook_link } = prismicDoc.data.body[10].primary;
+
+               console.log(twitter_link);
+
+               const footerDHeading = footerD.children[0];
+               const descriptionD = footerD.children[1];
+               const footerDLink = footerD.children[2];
+               const socialLinks = footerD.children[3];
+
+               footerDHeading.textContent = footer_d_heading[0].text;
+               descriptionD.textContent = footer_d_description[0].text.trim();
+
+               const em = email[0].text;
+
+               footerDLink.innerHTML = `<a href="mailto:${em}">${em}</a>`;
+
+               socialLinks.children[0].setAttribute('href', `${facebook_link[0].spans[0].data.url}`);
+               socialLinks.children[1].setAttribute('href', `${twitter_link[0].spans[0].data.url}`);
+               socialLinks.children[2].setAttribute('href', `${instagram_link[0].spans[0].data.url}`);
+            }
+            init();
+      </script>
   </head>
   <body>
-     <div class="loader">
+    <div class="loader">
         <div class="inner"></div>
     </div>
     <nav class="navbar navbar-expand-xl navbar-light">
@@ -89,7 +251,7 @@
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus
               inventore, dolores provident accusantium est voluptatem.
             </p>
-            <button class="btn primary-btn btn-lg">Request a callback</button>
+            <a class="btn primary-btn btn-lg">Meet Our Team</a>
           </div>
           
         </div>
@@ -107,24 +269,30 @@
            <div class="col-md-12">
              <div class="card contact-card">
                <div class="card-body contact-form">
-                 <div>
-                  <h3>Get a quote</h3>
-                  <div class="line ml-0"></div>
-                  <p>
-                    Fill up this form and our team will get back to you in 24 hours
-                  </p>
-                  <button class="contact-option">
-                    <i class="fas fa-phone"></i> 250 555 0199
-                  </button><br>
-                  <button class="contact-option">
-                    <i class="fas fa-envelope"></i> support@UGFinancial.com
-                  </button>
-                  <br><br><br>
-                  <div class="social">
-              <i class="fab fa-facebook"></i>
-              <i class="fab fa-twitter"></i>
-              <i class="fab fa-instagram"></i>
-            </div>
+                 <div class="contact-content">
+                    <h3>Get a quote</h3>
+                    <div class="line ml-0"></div>
+                    <p>
+                      Fill up this form and our team will get back to you in 24 hours
+                    </p>
+                    <button class="contact-option contact-num">
+                      <i class="fas fa-phone"></i> 250 555 0199
+                    </button><br>
+                    <a class="contact-option contact-email" href="mailto:support@UGFinancial.com">
+                      <i class="fas fa-envelope"></i> support@UGFinancial.com
+                    </a>
+                    <br><br><br>
+                    <div class="social social-links">
+                      <a href="#">
+                        <i class="fab fa-facebook"></i>
+                      </a>
+                      <a href="#">
+                      <i class="fab fa-twitter"></i>
+                      </a>
+                      <a href="">
+                      <i class="fab fa-instagram"></i>
+                      </a>
+                    </div>
                  </div>
                  <div>
                   <form action="">
@@ -141,70 +309,66 @@
       </div>
     </section>
 
-   <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-md-6">
-              <a href="#" class="logo">
-                <img src="img/logo.png" alt="" />
-              </a>
-              <p class="mt-3">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, architecto
-              </p>
-              <p>
-               <small>
-                  &copy; Copyright 2021. All rights reserved by UGFinancial
-               </small>
-              </p>
-          </div>
-          <div class="col-lg-3 col-md-6 links">
-            <h3 class="mt-4">About us</h3>
-            <a href="#about">About Us</a><br>
-            <a href="case-studies.html">Case studies</a><br>
-            <a href="services.html">Services</a><br>
-            <a href="blog.html">Blog</a><br>
-            <a href="contact.html">Contact</a><br>
-          </div>
-
-          <div class="col-lg-3 col-md-6 links">
-            <h3 class="mt-4">Services</h3>
-            <a href="#">Investment Planning</a><br>
-            <a href="#">Insurance Planning</a><br>
-            <a href="#">Risk Management</a><br>
-            <a href="#">Saving Plan</a><br>
-            <a href="#">Mutual Fund</a><br>
-          </div>
-
-           <div class="col-lg-3 col-md-6 links">
-            <h3 class="mt-4">Our address</h3>
-            <p class="mt-3">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, architecto
-            </p> 
-            
-            <p class="primary-text">
-               support@UGFinancial.com
-            </p>
-            <div class="social">
-              <a href="">
-                <i class="fab fa-facebook"></i>
-              </a>
-              <a href="">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="">
-                <i class="fab fa-instagram"></i>
-              </a>
+  <footer>
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-3 col-md-6 footer-a">
+                  <a href="#" class="logo">
+                  <img src="img/logo.png" alt="" />
+                  </a>
+                  <p class="mt-3">
+                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, architecto
+                  </p>
+                  <p>
+                     <small>
+                     &copy; Copyright 2021. All rights reserved by UGFinancial
+                     </small>
+                  </p>
+               </div>
+               <div class="col-lg-3 col-md-6 links footer-b">
+                  <h3 class="mt-4">About us</h3>
+                  <div>
+                     <a href="#about">About Us</a><br>
+                     <a href="case-studies.html">Case studies</a><br>
+                     <a href="services.html">Services</a><br>
+                     <a href="blog.html">Blog</a><br>
+                     <a href="contact.html">Contact</a><br>
+                  </div>
+               </div>
+               <div class="col-lg-3 col-md-6 links footer-c">
+                  <h3 class="mt-4">Services</h3>
+                  <div>
+                     <a href="#">Investment Planning</a><br>
+                     <a href="#">Insurance Planning</a><br>
+                     <a href="#">Risk Management</a><br>
+                     <a href="#">Saving Plan</a><br>
+                     <a href="#">Mutual Fund</a><br>
+                  </div>
+               </div>
+               <div class="col-lg-3 col-md-6 links footer-d">
+                  <h3 class="mt-4">Our address</h3>
+                  <p class="mt-3">
+                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, architecto
+                  </p>
+                  <p class="primary-text">
+                     <a href="mailto:support@UGFinancial.com">support@UGFinancial.com</a>
+                  </p>
+                  <div class="social">
+                     <a href="">
+                     <i class="fab fa-facebook"></i>
+                     </a>
+                     <a href="">
+                     <i class="fab fa-twitter"></i>
+                     </a>
+                     <a href="">
+                     <i class="fab fa-instagram"></i>
+                     </a>
+                  </div>
+               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </footer> 
-
-
-     <script
-         src="https://code.jquery.com/jquery-3.5.1.min.js"
-         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-         crossorigin="anonymous"></script>
+         </div>
+  </footer>
+    
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -222,9 +386,6 @@
         duration: 1000
       });
 
-      $(document).ready(function(){
-          $( ".loader").fadeOut(700);
-      });
     </script>
   </body>
 </html>

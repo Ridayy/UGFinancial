@@ -235,7 +235,7 @@
          heading.innerHTML = prismicH.asHTML(homee_heading);
          description.textContent = homee_description[0].text.trim();
          link.textContent = homee_btn_text[0].text;
-         link.setAttribute('href', `${homee_btn_link[0].text}`);
+         link.setAttribute('href', `${homee_btn_link[0].spans[0].data.url}`);
 
       }
 

@@ -95,6 +95,10 @@ h1 {
   margin-bottom: 0 !important;
 }
 
+h2 p {
+  margin-bottom: 0 !important;
+}
+
 .primary-btn {
   background: var(--primary-light);
   color: #fff !important;
@@ -263,6 +267,7 @@ h1 {
 #case-studies-a h2,
 #case-studies-b h2,
 #case-study-a h2,
+#case-study-a h2 p,
 #case-study-b h2,
 #case-study-c h2,
 #blog-a h2,
@@ -280,6 +285,10 @@ h1 {
   font-size: 1.8rem;
   font-family: "ModernEra-Bold";
   margin: 10px 0;
+}
+
+#post-a h2 p {
+  font-size: 1.8rem;
 }
 
 .post-publisher {
@@ -306,6 +315,7 @@ h1 {
 #services-c h3,
 #services-d h3,
 #case-studies-a h3,
+#case-studies-a h3 p,
 #case-studies-b h3,
 #case-study-c h3,
 #blog-a h3,
@@ -317,6 +327,12 @@ footer h3 {
   color: var(--primary-color) !important;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+#blog-a h3 p {
+  font-family: "ModernEra-Bold";
+  font-size: 1.3rem;
+  color: var(--primary-color) !important;
 }
 
 #whatwedo .card,
@@ -376,19 +392,20 @@ footer h3 {
 }
 
 #services .card.dark,
-#services-c .card.dark {
+#services-c .service-card:nth-of-type(even) .card {
   border: none;
   outline: none;
 }
 
-.home-d-cards .owl-item:nth-of-type(even) .card {
+.home-d-cards .owl-item:nth-of-type(even) .card,
+#services-c .service-card:nth-of-type(even) .card {
   background: var(--primary-color) !important;
 }
 
 #services .card.dark h3,
 #services .card.dark p,
-#services-c .card.dark h3,
-#services-c .card.dark p,
+#services-c .service-card:nth-of-type(even) .card h3,
+#services-c .service-card:nth-of-type(even) .card p,
 #services .home-d-cards .owl-item:nth-of-type(even) .card .card-body h3,
 .home-d-cards .owl-item:nth-of-type(even) .card p {
   color: #fff !important;
@@ -737,7 +754,10 @@ nav.case-nav {
 #case-study-a p,
 #post-a p {
   font-size: 1.1rem;
-  margin: 20px 0;
+}
+
+#post-a p:first-child {
+  margin-top: 20px;
 }
 
 .case-img {
@@ -826,6 +846,18 @@ nav.case-nav {
   text-overflow: ellipsis;
 }
 
+div p.case-content {
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+div p.case-content {
+  height: 145px;
+}
+
 .featured-post-img {
   width: 50%;
 }
@@ -902,6 +934,10 @@ nav.case-nav {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.founder-row:nth-of-type(odd) .founder-desc {
+  flex-direction: row-reverse;
 }
 
 .founder-img {
