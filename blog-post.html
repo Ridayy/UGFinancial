@@ -77,6 +77,10 @@
           let postId = searchParams.get("postId");
           const blogPost = prismicDoc.data.body[0].items[postId];
 
+          if (!blogPost) {
+            window.location.href = "blog.html";
+          }
+
           const {
             blog_title,
             image,
@@ -108,6 +112,8 @@
           postPublishedDate.textContent = pubDate;
 
           $(".loader").fadeOut();
+        } else {
+          window.location.href = "blog.html";
         }
       }
 
